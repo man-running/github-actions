@@ -2,15 +2,25 @@ name: Terraform Infrastructure Change Management Pipeline with GitHub Actions
 
 # trigger the pipeline if there is a push or pull request targetting the main branch and any changes on the path iac/**
 on:
- push:
-   branches:
-   - main
-   paths:
-   - iac/**
- pull_request:
-   branches:
-   - main
-   paths:
-   - iac/**
+  push:
+    branches: [ main ]
 
-   
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::863518431435:role/AWS-Credentials-for-GitHub-Role-6m3NmxeVglm0
+        aws-region: us-east-1
+
+# should be doing a validate, plan and running checkov, etc.    
+    - name: Terraform Apply
+      run: terraform apply
