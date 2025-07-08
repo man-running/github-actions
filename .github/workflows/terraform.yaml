@@ -21,6 +21,16 @@ jobs:
         role-to-assume: arn:aws:iam::863518431435:role/AWS-Credentials-for-GitHub-Role-6m3NmxeVglm0
         aws-region: us-east-1
 
-# should be doing a validate, plan and running checkov, etc.    
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3 # Use the latest version
+      with:
+        terraform_version: latest  #Or specify a version like 1.6.2
+
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Plan
+      run: terraform plan -no-color # Add -no-color for cleaner output
+
     - name: Terraform Apply
-      run: terraform apply
+      run: terraform apply -auto-approve # Be very careful with -auto-approve in a production setting!      
