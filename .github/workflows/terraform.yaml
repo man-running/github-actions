@@ -1,0 +1,16 @@
+name: "Terraform Infrastructure Change Management Pipeline with GitHub Actions"
+
+# trigger the pipeline if there is a push or pull request targetting the main branch and any changes on the path iac/**
+on:
+ push:
+   branches:
+   - main
+   paths:
+   - iac/**
+ pull_request:
+   branches:
+   - main
+   paths:
+   - iac/**
+
+   
