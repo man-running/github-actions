@@ -1,0 +1,68 @@
+# Docker and dev container files
+.devcontainer/
+.dockerignore
+
+# Shell and environment files
+.aws/
+/.zshrc
+
+# Ignore Terraform directories
+.terraform/
+**/.terraform/
+
+# Terraform state files
+*.tfstate
+*.tfstate.backup
+
+# Ignore crash logs created by Terraform
+crash.log
+
+# Ignore Terraform plan files
+*.tfplan
+
+# Ignore override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore Terraform variable files for different environments (optional)
+*.tfvars
+
+# Ignore zip files and logs
+*.zip
+*.log
+
+# Ignore virtual environments and VS Code gubbins
+.venv
+.vscode-server/
+venv/
+env/
+
+# Ignore the MacOS hidden files
+.DS_Store
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node modules
+node_modules/
+dist/
+dist-ssr/
+
+# Local development files
+*.local
+.env
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ENDS
