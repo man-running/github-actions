@@ -43,7 +43,7 @@ jobs:
       uses: bridgecrewio/checkov-action@v1
       with:
         directory: src/iac
-        soft_fail: false
+        soft_fail: "false"
 
     - name: Terraform Plan
       run: terraform -chdir=src/iac plan -no-color
