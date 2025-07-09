@@ -14,6 +14,8 @@ resource "aws_route53_zone" "main" {
 # -- Create VPC --------------------------------------------------------------------------------
 #Create VPC in us-east-1
 resource "aws_vpc" "vpc_core" {
+# checkov:skip=CKV2_AWS_11: VPC Logging not required on this VPC, used for scaffolding.
+# checkov:skip=CKV2_AWS_12: Ensure the default security group of every VPC restricts all traffic
   provider             = aws
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true

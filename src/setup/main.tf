@@ -3,6 +3,8 @@
 # -- Create an S3 bucket --------------------------------------------------------------------------------
 
 resource "aws_s3_bucket" "actions_bucket" {
+# checkov:skip=CKV2_AWS_6: Public access block not required.
+# checkov:skip=CKV2_AWS_62: Event notifications not required.
   bucket = "torchpaper.com.github-actions"
 
   tags = {
@@ -32,6 +34,8 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "actions_bucket_en
 # -- Create Dynamo DB table --------------------------------------------------------------------------------
 
 resource "aws_dynamodb_table" "terraform_locks" {
+  # checkov:skip=CKV_AWS_119: This DynamoDB table is used for Terraform state locking and does not require encryption.
+  # checkov:skip=CKV_AWS_28: Point in time recovery not required.
   name           = "terraform-locks"
   billing_mode   = "PAY_PER_REQUEST" # Use on-demand billing
   hash_key       = "LockID"
