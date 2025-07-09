@@ -32,8 +32,11 @@ jobs:
     - name: Terraform Validate
       run: terraform -chdir=src/iac validate
 
-    - name: Terraform Plan
-      run: terraform -chdir=src/iac plan -no-color
+    - name: Install TFLint
+      uses: terraform-linters/setup-tflint@v4
+
+    - name: Run TFLint
+      run: tflint --init && tflint --format=checkstyle
 
     # Security scanning with checkov
     - name: Run Checkov
@@ -42,5 +45,8 @@ jobs:
         directory: src/iac
         soft_fail: false
 
-#    - name: Terraform Apply
-#       run: terraform -chdir=src/iac apply -auto-approve #Remove -auto-approve and check the plan
+    - name: Terraform Plan
+      run: terraform -chdir=src/iac plan -no-color
+
+    - name: Terraform Apply
+      run: terraform -chdir=src/iac apply -auto-approve #Remove -auto-approve and check the plan
