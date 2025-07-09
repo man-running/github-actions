@@ -27,10 +27,20 @@ jobs:
         terraform_version: latest  #Or specify a version like 1.6.2
 
     - name: Terraform Init
-      run: terraform init
+      run: terraform -chdir=src/iac init
+
+    - name: Terraform Validate
+      run: terraform -chdir=src/iac validate
 
     - name: Terraform Plan
-      run: terraform plan -no-color # Add -no-color for cleaner output
+      run: terraform -chdir=src/iac plan -no-color
+
+    # Security scanning with checkov
+    - name: Run Checkov
+      uses: bridgecrewio/checkov-action@v1
+      with:
+        directory: src/iac
+        soft_fail: false
 
     - name: Terraform Apply
-      run: terraform apply -auto-approve # Be very careful with -auto-approve in a production setting!      
+      # run: terraform -chdir=src/iac apply -auto-approve #Remove -auto-approve and check the plan
