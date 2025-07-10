@@ -18,3 +18,6 @@ The backend is then configured in the terraform.tf file. Run the files in this f
 2. An S3 bucket for statefiles
 
 Terraform destroy can then be used to remove the configuration.
+
+## Test Sample
+The files in src/iac are a sample setup to demonstrate the system working.
