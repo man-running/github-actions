@@ -7,6 +7,9 @@ The folowing things need to happen to setup this CI/CD pipeline.
 4. Setup a backend for Terraform, otherwise the Terraform state files end up on the runner and then disappaer
 3. Use a aws-actions/configure-aws-credentials@v4 action to get the AWS credentials
 
+## Setup for the Role
+In order to setup the the role use the configure-aws-role.yml in the /utils directory. This is a CloudFormation file which can be uploaded and run. 
+
 ## Setup up a backend for Terraform
 
 This uses Terraform to setup Terraform, and because this setup is required to run the Terraform code in GitHub Actions this code cannot be mixed with the core Terraform code. Hence the files for this setup are in: src/setup.

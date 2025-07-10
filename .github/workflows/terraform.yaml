@@ -47,7 +47,7 @@ jobs:
         soft_fail: "false"
 
     - name: Terraform Plan
-      run: terraform -chdir=src/iac plan -no-color
+      run: terraform -chdir=src/iac plan -no-color -lock-timeout=60s
 
     - name: Terraform Apply
-      run: terraform -chdir=src/iac apply -auto-approve #Remove -auto-approve and check the plan
+      run: terraform -chdir=src/iac apply -lock-timeout=60s -auto-approve #Remove -auto-approve and check the plan
